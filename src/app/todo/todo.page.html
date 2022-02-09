@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+    <ion-title>Todo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="onAddTask()">
+    ajouter une tache
+  </ion-button>
+  <ion-card>
+    <ion-item *ngIf="unDoneList.length <= 0" lines="full" class="ion-activated">
+      <ion-label> liste des tâches en cours vide </ion-label>
+    </ion-item>
+    <ion-item *ngFor="let item of unDoneList" lines="full" class="ion-activated">
+      <ion-icon (click)="markDone(item)" name="square-outline" slot="start"></ion-icon>
+      <ion-label> {{ item }} </ion-label>
+      <ion-icon name="trash" (click)="onDeleteTask(item, false)" slot="end"></ion-icon>
+    </ion-item>
+
+  </ion-card>
+  <ion-card>
+    <ion-item *ngIf="doneList.length <= 0" lines="full" class="ion-activated">
+      <ion-label> liste des tâches finies vide </ion-label>
+    </ion-item>
+    <ion-item *ngFor="let item of doneList" lines="full" class="ion-activated">
+      <ion-icon (click)="markUnDone(item)" name="checkbox-outline" slot="start"></ion-icon>
+      <ion-label class="done"> {{ item }} </ion-label>
+      <ion-icon name="trash" (click)="onDeleteTask(item, true)" slot="end"></ion-icon>
+    </ion-item>
+  </ion-card>
+</ion-content>
